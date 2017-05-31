@@ -1,4 +1,6 @@
 /*  Color Palletes 
+
+http://paletton.com/#uid=23j0u0kllnu5NNhdlvwsOg6Hd80
 *** Primary color:
 
    shade 0 = #266E71 = rgb( 38,110,113) = rgba( 38,110,113,1) = rgb0(0.149,0.431,0.443)
@@ -14,6 +16,8 @@
    shade 2 = #FBC392 = rgb(251,195,146) = rgba(251,195,146,1) = rgb0(0.984,0.765,0.573)
    shade 3 = #80420D = rgb(128, 66, 13) = rgba(128, 66, 13,1) = rgb0(0.502,0.259,0.051)
    shade 4 = #401D00 = rgb( 64, 29,  0) = rgba( 64, 29,  0,1) = rgb0(0.251,0.114,0)
+
+font-family: 'Special Elite', cursive;
 */
 
 
@@ -23,20 +27,21 @@
 }
 
 body {
+	background-color: #266E71; 
 	font-size: 16px;
-	color: #eeeeee;
+	color: #AED2D4;
 	font-family: 'Nunito Sans', sans-serif;
 } 
 
 h1 {
 	font-family: 'Comfortaa', cursive;
 	font-size: 66px;
-	color: #ff32f1;
+	color: #FFE6D1;
 }
 
 h2 {  
+	font-family: 'Comfortaa', cursive;
 	font-size: 24px;
-	font-family: 'Special Elite', cursive;
 }
 
 .container {
@@ -49,5 +54,9 @@ h2 {
 } 
 
 .answers {
+	padding: 10px 25px;
+}
 
+.margintpbtm {
+	margin: 20px 0; 
 }
