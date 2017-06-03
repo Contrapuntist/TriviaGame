@@ -28,25 +28,58 @@ $(document).ready(function() {
 		userChoice: null, 
 		triviaQSelect: null,
 
-		gameInit: function() {
+		gameQuestionPrint: function() {
 			$("#question").text(triviaQuestions.question1.q); 
-			$("#answer-1").text(triviaQuestions.question1.ansOptions[0]);
-			$("#answer-2").text(triviaQuestions.question1.ansOptions[1]);
-			$("#answer-3").text(triviaQuestions.question1.ansOptions[2]);
-			$("#answer-4").text(triviaQuestions.question1.ansOptions[3]);
-			console.log(gameTracker.userChoice);   
-		}, 
+			var a = 1;
+ 			for (var i = 0; i < triviaQuestions.question1.ansOptions.length; i++) {
+ 				var li = $("<li>").appendTo("#answers");
+ 				li.append("<input type='radio' name='q-answer' id='answer-" + a + "' value=" + triviaQuestions.question1.ansOptions[i] + "'>" + triviaQuestions.question1.ansOptions[i] + "</input>"); 
+ 				a++;
+ 			}    
+			$('#start-button').remove(); 
+			var test = $('#answer-2').val();
+			console.log(test);
+		},  
+ 
+		gameStart: function () { 
+			$('#start-button').click(function(){
+				gameTracker.gameQuestionPrint(); 
+			});
+		},
 
 	}; 
+ 	
+	//$("#question").text(triviaQuestions.question1.q); 
+	//$("#answer-1").html(triviaQuestions.question1.ansOptions[0]);
+	//$("#answer-2").text(triviaQuestions.question1.ansOptions[1]);
+	//$("#answer-3").text(triviaQuestions.question1.ansOptions[2]);
+	//$("#answer-4").text(triviaQuestions.question1.ansOptions[3]); 
 
-	gameTracker.gameInit();
-
+	gameTracker.gameStart();
+	
 	$("#answer-1").click(function() {
 		/* Act on the event */
-		gameTracker.userChoice = triviaQuestions.question1.rtAnswer; 
+		console.log("radio clicked");
+		gameTracker.userChoice = $('#answer-1').val();
 		console.log(gameTracker.userChoice);
 	}); 
 
+
+	$("#answer-2").on('click',function() {
+		/* Act on the event */ 
+		console.log("radio clicked");
+		gameTracker.userChoice = $('#answer-2').val();
+		//if ( gameTracker.userChoice )
+
+		console.log(gameTracker.userChoice);
+		//console.log(alert("Right answer"));
+	});  
+
+	$("#answer-2").on('click',function() {
+		/* Act on the event */
+		gameTracker.userChoice = triviaQuestions.question1.wrAnswer;
+		console.log(gameTracker.userChoice);
+	}); 
 
 	$("#answer-2").on('click',function() {
 		/* Act on the event */
@@ -62,15 +95,14 @@ $(document).ready(function() {
 	    var count = 0;
 	    for (var prop in obj)
 	        if (Math.random() < 1/++count)
-	           gameTracker.triviaQSelect = prop; 
-	    return console.log(gameTracker.triviaQSelect);
+	        	console.log(prop);
+	           gameTracker.triviaQSelect = prop.q; 
+	    console.log(gameTracker.triviaQSelect);
 	}
 
-	function gameState(u) {
-		if 	
-	}
+	//function gameState(u) { if }
 
 	pickRandomProperty(triviaQuestions);
-	console.log(gameTracker.triviaQSelect.q); 
+	console.log(gameTracker.triviaQSelect); 
 
 });

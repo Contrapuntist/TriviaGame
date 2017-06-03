@@ -8,24 +8,37 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link href="https://fonts.googleapis.com/css?family=Comfortaa|Nunito+Sans|Special+Elite" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
 </head>
+
 
 <body>
 	<div class="container">
 		<header>
 			<h1>TRIVIA GAME</h1>
 		</header>
-		<div id="game" class="gamecontiner">
+		<div id="game" class="gamecontainer">
+			
+			<button id="start-button">Start</button>
+
 			<div class="margintpbtm">
 				<h2>Time left: <span id="gametimer"></span></h2>
 			</div>
-			<div id="question"></div> 
-			<div class="margintpbtm">
-				<div id="answer-1" class="answers margintpbtm">Answer 1</div>
-				<div id="answer-2" class="answers margintpbtm">Answer 2</div> 
-				<div id="answer-3" class="answers margintpbtm">Answer 3</div>
-				<div id="answer-4" class="answers margintpbtm">Answer 4</div>
+
+			<div id="q-container">
+				<div id="question"></div> 
+				<ul id="answers" class="margintpbtm"></ul>	
 			</div>
+		<!-- temp placeholders
+		<input type="radio" id="answer-1" class="answers margintpbtm answer-1">Answer 1</input>
+		<input type="radio" id="answer-2" class="answers margintpbtm answer-2">Answer 2</input> 
+		<input type="radio" id="answer-3" class="answers margintpbtm">Answer 3</input>
+		<input type="radio" id="answer-4" class="answers margintpbtm">Answer 4</input>
+		 -->
+
+
+			
 		</div> 
 
 	</div>
