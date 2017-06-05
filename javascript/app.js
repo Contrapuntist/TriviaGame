@@ -28,12 +28,20 @@ $(document).ready(function() {
 		userChoice: null, 
 		triviaQSelect: null,
 
+		randomizer: function (min, max) {
+	  		return Math.floor( Math.random() * ( max - min + 1 ) ) + min;		
+		},
+
 		gameQuestionPrint: function() {
-			$("#question").text(triviaQuestions[0].q); 
+			this.triviaQSelect = this.randomizer(0, triviaQuestions.length) 
+			console.log(this.triviaQSelect)
+			$("#question").text(triviaQuestions[this.triviaQSelect].q); 
 			var a = 1;
- 			for (var i = 0; i < triviaQuestions[0].ansOptions.length; i++) {
+ 			for (var i = 0; i < triviaQuestions[this.triviaQSelect].ansOptions.length; i++) {
  				var li = $("<li>").appendTo("#answers");
- 				li.append("<input type='radio' name='q-answer' id='answer-" + a + "' value='" + triviaQuestions[0].ansOptions[i] + "'>" + triviaQuestions[0].ansOptions[i] + "</input>"); 
+ 				li.append("<input type='radio' name='q-answer' id='answer-" + a + "' value='" + 
+ 					triviaQuestions[this.triviaQSelect].ansOptions[i] + "'>" + 
+ 					triviaQuestions[this.triviaQSelect].ansOptions[i] + "</input>");
  				a++;
  			}    
 			$('#start-button').remove(); 		
