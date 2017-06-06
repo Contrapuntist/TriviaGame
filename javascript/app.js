@@ -163,13 +163,10 @@ $(document).ready(function() {
 		    	gameTracker.stop();
 		    	gameTracker.notAnsweredCount++ 
 		    	gameTracker.scoreUpdate();
-		    }
-			
-		    //console.log( 'time is ' + gameTracker.gametime);
+		    }			
 		},
 		
 		stop: function() {
-    		// DONE: Use clearInterval to stop the count here and set the clock to not be running.
     		clearInterval(gameTracker.gameinterval);
    		},
 	}; 
