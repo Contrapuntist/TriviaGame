@@ -4,6 +4,25 @@ $(document).ready(function() {
 
 	var triviaQuestions = [
 		{
+			q: "Before Johnny Galecki was a star in Big Bang Theory, he was a regular in what other sitcom?",
+			ansOptions: ['Cheers', 'Roseanne', 'Step by Step', 'Blossom'],
+			rtAnswer: 'Roseanne',
+
+		}, 
+
+		{
+			q: "In what restaurant chain does Penny work until season 8?",
+			ansOptions: ['T.G.I.F.', "Chili's", 'Cheesecake Factory', 'P.F. Changs'],
+			rtAnswer: 'Cheesecake Factory',
+		}, 
+  
+		{	
+			q: "What actor has a PhD in Neuroscience?", 
+			ansOptions: ['Mayim Bialik', 'Kunal Nayyar', 'Johnny Galecki', 'Jim Parsons'], 
+			rtAnswer: 'Mayim Bialik',
+		}, 
+		
+		{
 			q: "Who wrote the Lord of The Rings trilogy?",
 			ansOptions: ['Michael Crichton', 'J.R.R. Tolkien', 'Philip K. Dick', 'George R.R. Martin'],
 			rtAnswer: "J.R.R. Tolkien",
@@ -15,49 +34,6 @@ $(document).ready(function() {
 			ansOptions: ['Thor', 'Hulk', 'Iron Man', 'Captain America'],
 			rtAnswer: 'Hulk',
 		}, 
-
-		{	
-			q: "When was the last time the Chicago Bears won the Super Bowl?", 
-			ansOptions: ['1980', '2006', '1988', '1985'], 
-			rtAnswer: '1985',
-		}, 
-				{
-			q: "Who wrote the Lord of The Rings trilogy?",
-			ansOptions: ['Michael Crichton', 'J.R.R. Tolkien', 'Philip K. Dick', 'George R.R. Martin'],
-			rtAnswer: "J.R.R. Tolkien",
-
-		}, 
-
-		{
-			q: "What Marvel character is big and green with a bad temper?",
-			ansOptions: ['Thor', 'Hulk', 'Iron Man', 'Captain America'],
-			rtAnswer: 'Hulk',
-		}, 
-
-		{	
-			q: "When was the last time the Chicago Bears won the Super Bowl?", 
-			ansOptions: ['1980', '2006', '1988', '1985'], 
-			rtAnswer: '1985',
-		}, 
-
-				{
-			q: "Who wrote the Lord of The Rings trilogy?",
-			ansOptions: ['Michael Crichton', 'J.R.R. Tolkien', 'Philip K. Dick', 'George R.R. Martin'],
-			rtAnswer: "J.R.R. Tolkien",
-
-		}, 
-
-		{
-			q: "What Marvel character is big and green with a bad temper?",
-			ansOptions: ['Thor', 'Hulk', 'Iron Man', 'Captain America'],
-			rtAnswer: 'Hulk',
-		}, 
-
-		{	
-			q: "When was the last time the Chicago Bears won the Super Bowl?", 
-			ansOptions: ['1980', '2006', '1988', '1985'], 
-			rtAnswer: '1985',
-		},  
 	]; 
 
 	var gameTracker = {
