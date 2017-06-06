@@ -21,6 +21,43 @@ $(document).ready(function() {
 			ansOptions: ['1980', '2006', '1988', '1985'], 
 			rtAnswer: '1985',
 		}, 
+				{
+			q: "Who wrote the Lord of The Rings trilogy?",
+			ansOptions: ['Michael Crichton', 'J.R.R. Tolkien', 'Philip K. Dick', 'George R.R. Martin'],
+			rtAnswer: "J.R.R. Tolkien",
+
+		}, 
+
+		{
+			q: "What Marvel character is big and green with a bad temper?",
+			ansOptions: ['Thor', 'Hulk', 'Iron Man', 'Captain America'],
+			rtAnswer: 'Hulk',
+		}, 
+
+		{	
+			q: "When was the last time the Chicago Bears won the Super Bowl?", 
+			ansOptions: ['1980', '2006', '1988', '1985'], 
+			rtAnswer: '1985',
+		}, 
+
+				{
+			q: "Who wrote the Lord of The Rings trilogy?",
+			ansOptions: ['Michael Crichton', 'J.R.R. Tolkien', 'Philip K. Dick', 'George R.R. Martin'],
+			rtAnswer: "J.R.R. Tolkien",
+
+		}, 
+
+		{
+			q: "What Marvel character is big and green with a bad temper?",
+			ansOptions: ['Thor', 'Hulk', 'Iron Man', 'Captain America'],
+			rtAnswer: 'Hulk',
+		}, 
+
+		{	
+			q: "When was the last time the Chicago Bears won the Super Bowl?", 
+			ansOptions: ['1980', '2006', '1988', '1985'], 
+			rtAnswer: '1985',
+		},  
 	]; 
 
 	var gameTracker = {
@@ -31,13 +68,17 @@ $(document).ready(function() {
 		notAnsweredCount: 0,
 		userChoice: null, 
 		triviaQSelect: null,
+		questioncount: 0,
 
-		randomizer: function (min, max) {
-	  		return Math.floor( Math.random() * ( max - min + 1 ) ) + min;		
+		randomizer: function (v) {
+	  		var x = Math.floor( Math.random() * v);
+	  		console.log(x);
+	  		return x; 
+
 		},
 
 		gameQuestionPrint: function() {
-			this.triviaQSelect = this.randomizer(0, triviaQuestions.length); 
+			this.triviaQSelect = this.randomizer(triviaQuestions.length); 
 			console.log(this.triviaQSelect);
 			$("#question").text(triviaQuestions[this.triviaQSelect].q); 
 			var a = 1;
@@ -63,33 +104,51 @@ $(document).ready(function() {
 		answerSubmit: function (a) { 
 			if (a === triviaQuestions[this.triviaQSelect].rtAnswer) { 
 				gameTracker.correctAnswersCount++;
-				console.log(gameTracker.correctAnswersCount + ' questions right');
 				gameTracker.stop();
-				$('#game').empty();
+				$('#game').hide();
 				this.scoreUpdate();
+				
 			} else { 
-				wrongAnswersCount++;
+				gameTracker.wrongAnswersCount++;
 				gameTracker.stop();
+				$('#game').hide();
 				this.scoreUpdate();
 			}
+		},  
+
+		// Score tally window in between question responses. 
+		scoreUpdate: function() { 
+			$('#scoretally').html('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
+			.append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>')
+			.append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>');
+			this.tallyTimer();
+			this.questioncount++;
+			console.log('total questions:' + this.questioncount); 
 		}, 
 
-		// next window with new html
-		scoreUpdate: function() { 
-			$('#game').html('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>');
-			$('#game').append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>');
-			$('game').append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>') 
-		}, 
+		tallyTimer: function() {
+			console.log("tally timer reached");
+			gameTracker.gametime = 30;
+			if (this.questioncount != 0) {
+				$('#scoretally').show();
+			}
+			setTimeout(function() {
+
+				$('#answers').empty();
+				gameTracker.gameQuestionPrint();
+				$('#scoretally').hide();
+				$('#game').show();
+				gameTracker.timerReset();	
+			}, 5000); 
+		},
 
 		// game timer
 		gametime: 30,
 		gameinterval: null,
 		
 		timerReset: function(time) {
-
-		    //gameTracker.gametime = 30;
 		    		    
-		    $('#timecontainer').html("<h2>Time left: <span id='gametimer'></span> seconds </h2>");
+		    $('#timecontainer').html("<h2>Time left: <span id='gametimer'>30</span> seconds </h2>");
 		    $('#gametimer').text(time); 
 		    
 		    gameTracker.gameinterval = setInterval(gameTracker.countdown, 1000); 
@@ -102,6 +161,8 @@ $(document).ready(function() {
 		    $("#gametimer").html(gameTracker.gametime); 
 		    if (gameTracker.gametime === 0 ) {
 		    	gameTracker.stop();
+		    	gameTracker.notAnsweredCount++ 
+		    	gameTracker.scoreUpdate();
 		    }
 			
 		    //console.log( 'time is ' + gameTracker.gametime);
@@ -112,40 +173,30 @@ $(document).ready(function() {
     		clearInterval(gameTracker.gameinterval);
    		},
 	}; 
- 	
-	//$("#question").text(triviaQuestions.question1.q); 
-	//$("#answer-1").html(triviaQuestions.question1.ansOptions[0]);
-	//$("#answer-2").text(triviaQuestions.question1.ansOptions[1]);
-	//$("#answer-3").text(triviaQuestions.question1.ansOptions[2]);
-	//$("#answer-4").text(triviaQuestions.question1.ansOptions[3]); 
 
 	gameTracker.gameStart();
 
 	// event propogation, bubbling up
 	$("#answers").on('click', '#answer-1', function() {
 		/* Act on the event */
-		console.log("radio clicked");
 		gameTracker.userChoice = $('#answer-1').val();
 		console.log(gameTracker.userChoice);
 	}); 
 
 	$("#answers").on('click', '#answer-2', function() {
 		/* Act on the event */
-		console.log("radio clicked");
 		gameTracker.userChoice = $('#answer-2').val();
 		console.log(gameTracker.userChoice);
 	});
 
 	$("#answers").on('click', '#answer-3', function() {
 		/* Act on the event */
-		console.log("radio clicked");
 		gameTracker.userChoice = $('#answer-3').val();;
 		console.log(gameTracker.userChoice);
 	}); 
 
 	$("#answers").on('click', '#answer-4',function() {
 		/* Act on the event */
-		console.log("radio clicked");
 		gameTracker.userChoice = $('#answer-4').val();;
 		console.log(gameTracker.userChoice);
 	}); 
