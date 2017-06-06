@@ -7,12 +7,11 @@ $(document).ready(function() {
 			q: "Before Johnny Galecki was a star in Big Bang Theory, he was a regular in what other sitcom?",
 			ansOptions: ['Cheers', 'Roseanne', 'Step by Step', 'Blossom'],
 			rtAnswer: 'Roseanne',
-
 		}, 
 
 		{
 			q: "In what restaurant chain does Penny work until season 8?",
-			ansOptions: ['T.G.I.F.', "Chili's", 'Cheesecake Factory', 'P.F. Changs'],
+			ansOptions: ['T.G.I.F.', 'Chili\'s', 'Cheesecake Factory', 'P.F. Changs'],
 			rtAnswer: 'Cheesecake Factory',
 		}, 
   
@@ -23,16 +22,15 @@ $(document).ready(function() {
 		}, 
 		
 		{
-			q: "Who wrote the Lord of The Rings trilogy?",
-			ansOptions: ['Michael Crichton', 'J.R.R. Tolkien', 'Philip K. Dick', 'George R.R. Martin'],
-			rtAnswer: "J.R.R. Tolkien",
-
+			q: "When Sheldon is sick, what song does he ask his friends to sing to him?",
+			ansOptions: ['Bazinga', 'Twinkle Twinkle Little Star', 'Smelly Cat', 'Soft Kitty'],
+			rtAnswer: "Soft Kitty",
 		}, 
 
 		{
-			q: "What Marvel character is big and green with a bad temper?",
-			ansOptions: ['Thor', 'Hulk', 'Iron Man', 'Captain America'],
-			rtAnswer: 'Hulk',
+			q: "What does Sheldon constantly reference to Leonard about their living arrangement?",
+			ansOptions: ['His IQ', 'Roommate agreement', 'Calling Leonard\'s mom,' 'His spot on the couch'],
+			rtAnswer: 'Roommate agreement',
 		}, 
 	]; 
 
