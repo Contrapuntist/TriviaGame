@@ -89,8 +89,7 @@ $(document).ready(function() {
 
 		gameReset: function() { 
 			console.log('game reset reached');
-			debugger;
-			$('#scoretally').hide();
+			$('#scoretally').hide().empty();
 			$('#game').show(); 
 			$('#answers').empty();
 			this.gametime = 5;
@@ -99,6 +98,7 @@ $(document).ready(function() {
 			this.correctAnswersCount = 0; 
 			this.wrongAnswersCount = 0; 
 			this.notAnsweredCount = 0;
+			this.questioncount = 0;
 		},
 
 		answerSubmit: function (a) { 
