@@ -1,6 +1,7 @@
 $(document).ready(function() { 
 
 	// https://www.uselessdaily.com/news/40-amazing-facts-about-the-tv-series-the-big-bang-theory-list/ 
+	// https://giphy.com/search/big-bang-theory
 
 	var triviaQuestions = [
 		{
@@ -89,16 +90,19 @@ $(document).ready(function() {
 
 		gameReset: function() { 
 			console.log('game reset reached');
-			$('#scoretally').hide().empty();
-			$('#game').show(); 
-			$('#answers').empty();
-			this.gametime = 5;
-			gameTracker.gameQuestionPrint(); 
-			gameTracker.timerReset(this.gametime);
+
 			this.correctAnswersCount = 0; 
 			this.wrongAnswersCount = 0; 
 			this.notAnsweredCount = 0;
-			this.questioncount = 0;
+			debugger;
+			$('#scoretally').hide().empty();
+			$('#game').show(); 
+			$('#answers').empty();
+			debugger;
+			this.gametime = 5;
+			gameTracker.gameQuestionPrint(); 
+			gameTracker.timerReset(this.gametime);
+
 		},
 
 		answerSubmit: function (a) { 
