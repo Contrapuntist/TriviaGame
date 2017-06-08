@@ -29,9 +29,16 @@ $(document).ready(function() {
 
 		{
 			q: "What does Sheldon constantly reference to Leonard about their living arrangement?",
-			ansOptions: ['His IQ', 'Roommate agreement', 'Calling Leonard\'s mom,' 'His spot on the couch'],
+			ansOptions: ['His IQ', 'Roommate agreement', 'Calling Leonard\'s mom', 'His spot on the couch'],
 			rtAnswer: 'Roommate agreement',
 		}, 
+
+		{
+			q: "What is the name of Raj's dog?",
+			ansOptions: ['Spock', 'Cardomon', 'Cinnamon', 'Pepper'],
+			rtAnswer: 'Roommate agreement',
+		}, 
+
 	]; 
 
 	var gameTracker = {
@@ -68,11 +75,30 @@ $(document).ready(function() {
 		},  
  
 		gameStart: function () { 
+			 
+
 			$('#start-button').click(function(){
+				//if ( this.questioncount > 8 ) {
+				//	this.gameReset(); 
+				//}
+
 				gameTracker.gameQuestionPrint(); 
 				gameTracker.timerReset(this.gametime);
 			});
-			console.log(gameTracker.userChoice);
+		}, 
+
+		gameReset: function() { 
+			console.log('game reset reached');
+			debugger;
+			$('#scoretally').hide();
+			$('#game').show(); 
+			$('#answers').empty();
+			this.gametime = 5;
+			gameTracker.gameQuestionPrint(); 
+			gameTracker.timerReset(this.gametime);
+			this.correctAnswersCount = 0; 
+			this.wrongAnswersCount = 0; 
+			this.notAnsweredCount = 0;
 		},
 
 		answerSubmit: function (a) { 
@@ -89,23 +115,38 @@ $(document).ready(function() {
 				this.scoreUpdate();
 			}
 		},  
-
+ 
 		// Score tally window in between question responses. 
 		scoreUpdate: function() { 
-			$('#scoretally').html('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
-			.append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>')
-			.append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>');
-			this.tallyTimer();
-			this.questioncount++;
-			console.log('total questions:' + this.questioncount); 
+			if (this.questioncount < 3) { 
+
+				$('#scoretally').html('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
+				.append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>')
+				.append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>');
+				
+				this.tallyTimer();
+				this.questioncount++;
+				console.log('total questions:' + this.questioncount); 
+
+			} else {  
+				$('#scoretally').html('<h2> Game Over </h2>')
+				.append('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
+				.append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>')
+				.append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>') 
+				.append('<button id=\'start-button\'>Play Again</button>');
+
+				$('#game').hide();
+				$('#scoretally').show();
+			}
 		}, 
 
 		tallyTimer: function() {
 			console.log("tally timer reached");
-			gameTracker.gametime = 30;
+			$('#game').hide();
+			gameTracker.gametime = 5;
 			if (this.questioncount != 0) {
 				$('#scoretally').show();
-			}
+			} 
 			setTimeout(function() {
 
 				$('#answers').empty();
@@ -116,8 +157,8 @@ $(document).ready(function() {
 			}, 5000); 
 		},
 
-		// game timer
-		gametime: 30,
+		// game timer setup
+		gametime: 5,
 		gameinterval: null,
 		
 		timerReset: function(time) {
@@ -162,19 +203,24 @@ $(document).ready(function() {
 
 	$("#answers").on('click', '#answer-3', function() {
 		/* Act on the event */
-		gameTracker.userChoice = $('#answer-3').val();;
+		gameTracker.userChoice = $('#answer-3').val();
 		console.log(gameTracker.userChoice);
 	}); 
 
 	$("#answers").on('click', '#answer-4',function() {
 		/* Act on the event */
-		gameTracker.userChoice = $('#answer-4').val();;
+		gameTracker.userChoice = $('#answer-4').val();
 		console.log(gameTracker.userChoice);
 	}); 
 
 	$('#submitbtn').on('click', function(){ 
 		gameTracker.answerSubmit(gameTracker.userChoice);
 		console.log('submit clicked');
-	});
+	}); 
+
+	$('#scoretally').on('click', '#start-button', function() { 
+		console.log('replay clicked');
+		gameTracker.gameReset();	
+		});
 
 });
