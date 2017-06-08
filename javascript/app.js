@@ -37,7 +37,7 @@ $(document).ready(function() {
 		{
 			q: "What is the name of Raj's dog?",
 			ansOptions: ['Spock', 'Cardomon', 'Cinnamon', 'Pepper'],
-			rtAnswer: 'Roommate agreement',
+			rtAnswer: 'Cinnamon',
 		}, 
 
 	]; 
