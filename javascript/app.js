@@ -4,7 +4,7 @@ $(document).ready(function() {
 	// https://giphy.com/search/big-bang-theory
 
 	// Array of objects with questions, answers and correct answer
-	
+
 	var triviaQuestions = [
 		{
 			q: "Before Johnny Galecki was a star in Big Bang Theory, he was a regular in what other sitcom?",
@@ -38,10 +38,39 @@ $(document).ready(function() {
 
 		{
 			q: "What is the name of Raj's dog?",
-			ansOptions: ['Spock', 'Cardomon', 'Cinnamon', 'Pepper'],
+			ansOptions: ['Ginger', 'Cookie', 'Cinnamon', 'Pepper'],
 			rtAnswer: 'Cinnamon',
-		}, 
+		},  
 
+		{
+			q: "What is the name of Raj's sister?", 
+			ansOptions: ["Priya", 'Maya', 'Saanvi', 'Vanya'],
+			rtAnswer: 'Priya', 
+		},
+
+		{
+			q: 'When Raj\'s working permit and visa expire and he was about to be deported, who did he end up working for?', 
+			ansOptions: ['Leonard', 'Penny', 'Sheldon', 'Howard'],
+			rtAnswer: 'Sheldon', 
+		} 
+
+		{
+			q: 'Which band wrote the themesong of the series?',
+			ansOptions: ['Stormchasers', 'Barenaked Ladies', 'The Animals', 'Dreamers'],
+			rtAnswer: 'Barenaked Ladies',
+		} 
+
+		{
+			q: 'What is Sheldon\'s catch phrase?',
+			ansOptions: ['Bazinga', 'Merlin\'s Beard', 'Bam', 'I rule' ],
+			rtAnswer: 'Bazinga',
+		}
+
+		{
+			q: '',
+			ansOptions: [],
+
+		}
 	]; 
 
 	// Object with all functions and global variables 
