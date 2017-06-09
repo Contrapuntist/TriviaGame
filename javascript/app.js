@@ -3,6 +3,8 @@ $(document).ready(function() {
 	// https://www.uselessdaily.com/news/40-amazing-facts-about-the-tv-series-the-big-bang-theory-list/ 
 	// https://giphy.com/search/big-bang-theory
 
+	// Array of objects with questions, answers and correct answer
+	
 	var triviaQuestions = [
 		{
 			q: "Before Johnny Galecki was a star in Big Bang Theory, he was a regular in what other sitcom?",
@@ -42,6 +44,7 @@ $(document).ready(function() {
 
 	]; 
 
+	// Object with all functions and global variables 
 	var gameTracker = {
 		
 		//variables used throughout game
@@ -54,11 +57,11 @@ $(document).ready(function() {
 
 		randomizer: function (v) {
 	  		var x = Math.floor( Math.random() * v);
-	  		console.log(x);
 	  		return x; 
 
 		},
 
+		// function dynamically adds questions and answers to #game container
 		gameQuestionPrint: function() {
 			this.triviaQSelect = this.randomizer(triviaQuestions.length); 
 			console.log(this.triviaQSelect);
@@ -74,44 +77,38 @@ $(document).ready(function() {
 			$('#start-button').remove();
 			$('#submitbtn').html('<button>Submit</button>'); 		
 		},  
- 
+ 		
+ 		// function for starting game 
 		gameStart: function () { 
-			 
-
 			$('#start-button').click(function(){
-				//if ( this.questioncount > 8 ) {
-				//	this.gameReset(); 
-				//}
-
 				gameTracker.gameQuestionPrint(); 
 				gameTracker.timerReset(this.gametime);
 			});
 		}, 
 
+		// resets variables, timer and restarts game
 		gameReset: function() { 
 			console.log('game reset reached');
-
+			this.questioncount = 0;
 			this.correctAnswersCount = 0; 
 			this.wrongAnswersCount = 0; 
 			this.notAnsweredCount = 0;
-			debugger;
-			$('#scoretally').hide().empty();
-			$('#game').show(); 
 			$('#answers').empty();
-			debugger;
-			this.gametime = 5;
+			this.gametime = 30;
 			gameTracker.gameQuestionPrint(); 
 			gameTracker.timerReset(this.gametime);
-
+			$('#game').show();
+			$('#scoretally').empty(); 
 		},
 
+		// function defining how the game should respond when 
+		// user selects answer before time runs out 
 		answerSubmit: function (a) { 
 			if (a === triviaQuestions[this.triviaQSelect].rtAnswer) { 
 				gameTracker.correctAnswersCount++;
 				gameTracker.stop();
 				$('#game').hide();
 				this.scoreUpdate();
-				
 			} else { 
 				gameTracker.wrongAnswersCount++;
 				gameTracker.stop();
@@ -120,34 +117,43 @@ $(document).ready(function() {
 			}
 		},  
  
-		// Score tally window in between question responses. 
+	// Score tally window in between question responses. 
 		scoreUpdate: function() { 
-			if (this.questioncount < 3) { 
+			if (this.questioncount < 2) { 
 
+				// html that is added when question correct
 				$('#scoretally').html('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
 				.append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>')
 				.append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>');
 				
+				// Score tally screen started 
 				this.tallyTimer();
-				this.questioncount++;
-				console.log('total questions:' + this.questioncount); 
+
+				// adds total questions answered 
+				this.questioncount++; 
 
 			} else {  
+
 				$('#scoretally').html('<h2> Game Over </h2>')
 				.append('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
 				.append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>')
 				.append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>') 
 				.append('<button id=\'start-button\'>Play Again</button>');
 
+				// toggles visibility of container. 
+				// **Note tried using .toggle(), but didn't work right 
 				$('#game').hide();
 				$('#scoretally').show();
 			}
 		}, 
 
+		// timer setup when showing scores in between questions 
 		tallyTimer: function() {
 			console.log("tally timer reached");
+			console.log(this.questioncount);
 			$('#game').hide();
-			gameTracker.gametime = 5;
+			gameTracker.gametime = 30;
+			debugger;
 			if (this.questioncount != 0) {
 				$('#scoretally').show();
 			} 
@@ -158,23 +164,21 @@ $(document).ready(function() {
 				$('#scoretally').hide();
 				$('#game').show();
 				gameTracker.timerReset();	
-			}, 5000); 
+			}, 3000); 
 		},
 
-		// game timer setup
-		gametime: 5,
+	// game timer setup
+		gametime: 30,
 		gameinterval: null,
 		
-		timerReset: function(time) {
-		    		    
+		//Resets clock
+		timerReset: function(time) {    
 		    $('#timecontainer').html("<h2>Time left: <span id='gametimer'>30</span> seconds </h2>");
 		    $('#gametimer').text(time); 
-		    
 		    gameTracker.gameinterval = setInterval(gameTracker.countdown, 1000); 
 		  },
 		
 	  	countdown: function() {
-
 		    // reduce time
 		    gameTracker.gametime--;
 		    $("#gametimer").html(gameTracker.gametime); 
@@ -185,14 +189,16 @@ $(document).ready(function() {
 		    }			
 		},
 		
+		//stops timer
 		stop: function() {
     		clearInterval(gameTracker.gameinterval);
    		},
 	}; 
 
+	//initiates game
 	gameTracker.gameStart();
 
-	// event propogation, bubbling up
+	// click events 
 	$("#answers").on('click', '#answer-1', function() {
 		/* Act on the event */
 		gameTracker.userChoice = $('#answer-1').val();
@@ -200,19 +206,16 @@ $(document).ready(function() {
 	}); 
 
 	$("#answers").on('click', '#answer-2', function() {
-		/* Act on the event */
 		gameTracker.userChoice = $('#answer-2').val();
 		console.log(gameTracker.userChoice);
 	});
 
 	$("#answers").on('click', '#answer-3', function() {
-		/* Act on the event */
 		gameTracker.userChoice = $('#answer-3').val();
 		console.log(gameTracker.userChoice);
 	}); 
 
 	$("#answers").on('click', '#answer-4',function() {
-		/* Act on the event */
 		gameTracker.userChoice = $('#answer-4').val();
 		console.log(gameTracker.userChoice);
 	}); 
@@ -224,7 +227,8 @@ $(document).ready(function() {
 
 	$('#scoretally').on('click', '#start-button', function() { 
 		console.log('replay clicked');
-		gameTracker.gameReset();	
-		});
+		gameTracker.gameReset();
+		//$('#scoretally').empty(); 	
+	});
 
 });
