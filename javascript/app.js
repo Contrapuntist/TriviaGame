@@ -122,7 +122,7 @@ $(document).ready(function() {
 
 		},
 
-		// function dynamically adds questions and answers to #game container
+		// function that dynamically adds questions and answers to #game container
 		gameQuestionPrint: function() {
 			this.triviaQSelect = this.randomizer(triviaQuestions.length); 
 			$("#question").text(triviaQuestions[this.triviaQSelect].q); 
@@ -158,7 +158,8 @@ $(document).ready(function() {
 			gameTracker.gameQuestionPrint(); 
 			gameTracker.timerReset(this.gametime);
 			$('#game').show();
-			$('#tally').empty(); 
+			$('#tally').empty();
+			this.gifsrc = null; 
 		},
 
 		// function defining how the game should respond when 
@@ -199,7 +200,7 @@ $(document).ready(function() {
 
 			} else {  
 
-				$('#tally').html('<h2> Game Over </h2>')
+				$('#tally').html('<h2 class="gameover">Game Over</h2>')
 				.append('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
 				.append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>')
 				.append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>') 
@@ -207,9 +208,10 @@ $(document).ready(function() {
 
 				// toggles visibility of container. 
 				// **Note tried using .toggle(), but didn't work right 
-				$('#tally-gif').attr('src', '');
+				$('#tally-gif').attr('src', 'images/jamming.gif');
 				$('#game').hide();
 				$('#scoretally').show();
+		
 			}
 		}, 
 
@@ -219,9 +221,11 @@ $(document).ready(function() {
 			//console.log(this.questioncount);
 			$('#game').hide();
 			gameTracker.gametime = 30;
+		
 			if (this.questioncount != 0) {
 				$('#scoretally').show();
 			} 
+		
 			setTimeout(function() {
 				$('#answers').empty();
 				gameTracker.gameQuestionPrint();
@@ -229,9 +233,11 @@ $(document).ready(function() {
 				$('#game').show();
 				gameTracker.timerReset();	
 			}, 4000); 
+		
 		},
 
-	// game timer setup
+		
+		// game timer setup
 		gametime: 30,
 		gameinterval: null,
 		

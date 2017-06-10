@@ -49,8 +49,6 @@ input[type='radio'] {
 	line-height: 25px;
 }
 
-
-
 .gamecontainer {
 	margin: 15px 0;
 } 
@@ -71,8 +69,4 @@ input[type='radio'] {
 
 .margintpbtm {
 	margin: 20px 0; 
-}
-
-.gif img {
-	width: 250px;
 }
