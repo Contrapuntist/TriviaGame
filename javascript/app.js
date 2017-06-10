@@ -114,6 +114,7 @@ $(document).ready(function() {
 		userChoice: null, 
 		triviaQSelect: null,
 		questioncount: 0,
+		gifsrc: null,
 
 		randomizer: function (v) {
 	  		var x = Math.floor( Math.random() * v);
@@ -124,7 +125,6 @@ $(document).ready(function() {
 		// function dynamically adds questions and answers to #game container
 		gameQuestionPrint: function() {
 			this.triviaQSelect = this.randomizer(triviaQuestions.length); 
-			console.log(this.triviaQSelect);
 			$("#question").text(triviaQuestions[this.triviaQSelect].q); 
 			var a = 1;
  			for (var i = 0; i < triviaQuestions[this.triviaQSelect].ansOptions.length; i++) {
@@ -148,7 +148,7 @@ $(document).ready(function() {
 
 		// resets variables, timer and restarts game
 		gameReset: function() { 
-			console.log('game reset reached');
+			//console.log('game reset reached');
 			this.questioncount = 0;
 			this.correctAnswersCount = 0; 
 			this.wrongAnswersCount = 0; 
@@ -158,18 +158,21 @@ $(document).ready(function() {
 			gameTracker.gameQuestionPrint(); 
 			gameTracker.timerReset(this.gametime);
 			$('#game').show();
-			$('#scoretally').empty(); 
+			$('#tally').empty(); 
 		},
 
 		// function defining how the game should respond when 
 		// user selects answer before time runs out 
 		answerSubmit: function (a) { 
 			if (a === triviaQuestions[this.triviaQSelect].rtAnswer) { 
+				this.gifsrc = 'images/BBT-Yeah.gif';
 				gameTracker.correctAnswersCount++;
 				gameTracker.stop();
 				$('#game').hide();
 				this.scoreUpdate();
+
 			} else { 
+				this.gifsrc = 'images/leonard-be-serious.gif'
 				gameTracker.wrongAnswersCount++;
 				gameTracker.stop();
 				$('#game').hide();
@@ -179,22 +182,24 @@ $(document).ready(function() {
  
 	// Score tally window in between question responses. 
 		scoreUpdate: function() { 
+			
 			if (this.questioncount < 7) { 
 				// adds total questions answered 
 				this.questioncount++; 
 
 				// html that is added when question correct
-				$('#scoretally').html('<h2>' + this.questioncount + ' of 8 questions answered<h2>')
+				$('#tally').html('<h2>' + this.questioncount + ' of 8 questions answered<h2>')
 				.append('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
 				.append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>')
 				.append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>');
-				
+
+				$('#tally-gif').attr('src', this.gifsrc);
 				// Score tally screen started 
 				this.tallyTimer();
 
 			} else {  
 
-				$('#scoretally').html('<h2> Game Over </h2>')
+				$('#tally').html('<h2> Game Over </h2>')
 				.append('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
 				.append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>')
 				.append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>') 
@@ -202,6 +207,7 @@ $(document).ready(function() {
 
 				// toggles visibility of container. 
 				// **Note tried using .toggle(), but didn't work right 
+				$('#tally-gif').attr('src', '');
 				$('#game').hide();
 				$('#scoretally').show();
 			}
@@ -209,21 +215,20 @@ $(document).ready(function() {
 
 		// timer setup when showing scores in between questions 
 		tallyTimer: function() {
-			console.log("tally timer reached");
-			console.log(this.questioncount);
+			
+			//console.log(this.questioncount);
 			$('#game').hide();
 			gameTracker.gametime = 30;
 			if (this.questioncount != 0) {
 				$('#scoretally').show();
 			} 
 			setTimeout(function() {
-
 				$('#answers').empty();
 				gameTracker.gameQuestionPrint();
 				$('#scoretally').hide();
 				$('#game').show();
 				gameTracker.timerReset();	
-			}, 3000); 
+			}, 4000); 
 		},
 
 	// game timer setup
@@ -241,9 +246,12 @@ $(document).ready(function() {
 		    // reduce time
 		    gameTracker.gametime--;
 		    $("#gametimer").html(gameTracker.gametime); 
+		    
 		    if (gameTracker.gametime === 0 ) {
+
+		    	gameTracker.gifsrc = 'images/penny-help-me.gif';
 		    	gameTracker.stop();
-		    	gameTracker.notAnsweredCount++ 
+		    	gameTracker.notAnsweredCount++; 
 		    	gameTracker.scoreUpdate();
 		    }			
 		},
@@ -258,34 +266,33 @@ $(document).ready(function() {
 	gameTracker.gameStart();
 
 	// click events 
+	// Note to self: must find way to use a single event click to grab val of any radio choice 
 	$("#answers").on('click', '#answer-1', function() {
 		/* Act on the event */
 		gameTracker.userChoice = $('#answer-1').val();
-		console.log(gameTracker.userChoice);
+		
 	}); 
 
 	$("#answers").on('click', '#answer-2', function() {
 		gameTracker.userChoice = $('#answer-2').val();
-		console.log(gameTracker.userChoice);
+		
 	});
 
 	$("#answers").on('click', '#answer-3', function() {
 		gameTracker.userChoice = $('#answer-3').val();
-		console.log(gameTracker.userChoice);
+		
 	}); 
 
 	$("#answers").on('click', '#answer-4',function() {
 		gameTracker.userChoice = $('#answer-4').val();
-		console.log(gameTracker.userChoice);
+		
 	}); 
 
 	$('#submitbtn').on('click', function(){ 
 		gameTracker.answerSubmit(gameTracker.userChoice);
-		console.log('submit clicked');
 	}); 
 
-	$('#scoretally').on('click', '#start-button', function() { 
-		console.log('replay clicked');
+	$('#tally').on('click', '#start-button', function() { 
 		gameTracker.gameReset(); 	
 	});
 

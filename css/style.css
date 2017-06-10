@@ -1,6 +1,13 @@
 /*  Color Palletes 
 
-http://paletton.com/#uid=23j0u0kllnu5NNhdlvwsOg6Hd80
+Note to self: 
+  - Original pallete created pre-TBBT theme: http://paletton.com/#uid=23j0u0kllnu5NNhdlvwsOg6Hd80 
+
+
+**************************
+
+Note: Decided towards the end of game creation to use Bootstrap, so some CSS might be here unnecessarily. 
+Some has been cleaned out, but what is left I'll deal with later.   
 
 */
 
@@ -43,6 +50,7 @@ input[type='radio'] {
 }
 
 
+
 .gamecontainer {
 	margin: 15px 0;
 } 
@@ -63,4 +71,8 @@ input[type='radio'] {
 
 .margintpbtm {
 	margin: 20px 0; 
+}
+
+.gif img {
+	width: 250px;
 }
