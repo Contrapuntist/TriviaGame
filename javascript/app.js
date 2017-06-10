@@ -1,7 +1,8 @@
 $(document).ready(function() { 
 
-	// https://www.uselessdaily.com/news/40-amazing-facts-about-the-tv-series-the-big-bang-theory-list/ 
-	// https://giphy.com/search/big-bang-theory
+	// NOTE: Game logic needs to added a way to eliminate duplicate questions. 
+	// Ran out of time, but identified the issue. I think I'd add the question number in array or string
+	// to another array to compare and if it exists in array, then randomize again to pick new question  
 
 	// Array of objects with questions, answers and correct answer
 
@@ -16,7 +17,13 @@ $(document).ready(function() {
 			q: "In what restaurant chain does Penny work until season 8?",
 			ansOptions: ['T.G.I.F.', 'Chili\'s', 'Cheesecake Factory', 'P.F. Changs'],
 			rtAnswer: 'Cheesecake Factory',
-		}, 
+		},  
+
+		{
+			q: 'In one episode, Penny get\'s addicted to what video game?',
+			ansOptions: ['World of Warcraft', 'Starcraft', 'Age of Conan', 'Star Wars Battlefront'],
+			rtAnswer: 'Age of Conan',
+		},
   
 		{	
 			q: "What actor has a PhD in Neuroscience?", 
@@ -37,6 +44,12 @@ $(document).ready(function() {
 		}, 
 
 		{
+			q: 'Name the episode Howard first meets Bernadette?',
+			ansOptions: ['The Creepy Candy Coating Corollary', 'The Hot Troll Deviation', 'The Spaghetti Catalyst', 'The Lunar Excitation'],
+			rtAnswer: 'The Creepy Candy Coating Corollary',
+		},
+
+		{
 			q: "What is the name of Raj's dog?",
 			ansOptions: ['Ginger', 'Cookie', 'Cinnamon', 'Pepper'],
 			rtAnswer: 'Cinnamon',
@@ -52,25 +65,43 @@ $(document).ready(function() {
 			q: 'When Raj\'s working permit and visa expire and he was about to be deported, who did he end up working for?', 
 			ansOptions: ['Leonard', 'Penny', 'Sheldon', 'Howard'],
 			rtAnswer: 'Sheldon', 
-		} 
+		}, 
 
 		{
 			q: 'Which band wrote the themesong of the series?',
 			ansOptions: ['Stormchasers', 'Barenaked Ladies', 'The Animals', 'Dreamers'],
 			rtAnswer: 'Barenaked Ladies',
-		} 
+		}, 
 
 		{
 			q: 'What is Sheldon\'s catch phrase?',
 			ansOptions: ['Bazinga', 'Merlin\'s Beard', 'Bam', 'I rule' ],
 			rtAnswer: 'Bazinga',
-		}
+		},
 
 		{
-			q: '',
-			ansOptions: [],
+			q: 'What actor has NOT made a guest appearance?',
+			ansOptions: ['Tom Selleck', 'Stephen Hawking', 'Neil deGrasse Tyson', 'Bob Newhart'],
+			rtAnswer: 'Tom Selleck',
+		},
 
-		}
+		{
+			q: 'What regularly appearing character eventually moves in with Howard\'s mother?' ,
+			ansOptions: ['Will Wheaton', 'Stuart Bloom', 'Barry Kripke', 'Amy Farrah Fowler' ],
+			rtAnswer: 'Stuart Bloom', 
+		}, 
+
+		{
+			q: 'What type of store does Stuart own and run?', 
+			ansOptions: ['Radio Shack', 'Comic Book Store', 'Board Game Store', 'Video Game Store'],
+			rtAnswer: 'Comic Book Store',
+		}, 
+
+		{
+			q: 'In what episode does Penny first kiss Leonard?',
+			ansOptions: ['The Middle-Earth Paradigm', 'The Grasshopper Experiment', 'The Pancake Batter Anomaly', 'The Tangerine Factor'],
+			rtAnswer: 'The Middle-Earth Paradigm',
+		},
 	]; 
 
 	// Object with all functions and global variables 
@@ -98,7 +129,7 @@ $(document).ready(function() {
 			var a = 1;
  			for (var i = 0; i < triviaQuestions[this.triviaQSelect].ansOptions.length; i++) {
  				var li = $("<li>").appendTo("#answers");
- 				li.append("<input type='radio' name='q-answer' id='answer-" + a + "' value='" + 
+ 				li.append("<input class='aria-b' type='radio' name='q-answer' id='answer-" + a + "' value='" + 
  					triviaQuestions[this.triviaQSelect].ansOptions[i] + "'>" + 
  					triviaQuestions[this.triviaQSelect].ansOptions[i] + "</input>");
  				a++;
@@ -148,18 +179,18 @@ $(document).ready(function() {
  
 	// Score tally window in between question responses. 
 		scoreUpdate: function() { 
-			if (this.questioncount < 2) { 
+			if (this.questioncount < 7) { 
+				// adds total questions answered 
+				this.questioncount++; 
 
 				// html that is added when question correct
-				$('#scoretally').html('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
+				$('#scoretally').html('<h2>' + this.questioncount + ' of 8 questions answered<h2>')
+				.append('<h2>Correct answers: ' + this.correctAnswersCount + '<h2>')
 				.append('<h2>Wrong answers: ' + this.wrongAnswersCount + '<h2>')
 				.append('<h2>Questions not answered: ' + this.notAnsweredCount + '<h2>');
 				
 				// Score tally screen started 
 				this.tallyTimer();
-
-				// adds total questions answered 
-				this.questioncount++; 
 
 			} else {  
 
@@ -182,7 +213,6 @@ $(document).ready(function() {
 			console.log(this.questioncount);
 			$('#game').hide();
 			gameTracker.gametime = 30;
-			debugger;
 			if (this.questioncount != 0) {
 				$('#scoretally').show();
 			} 
@@ -256,8 +286,7 @@ $(document).ready(function() {
 
 	$('#scoretally').on('click', '#start-button', function() { 
 		console.log('replay clicked');
-		gameTracker.gameReset();
-		//$('#scoretally').empty(); 	
+		gameTracker.gameReset(); 	
 	});
 
 });

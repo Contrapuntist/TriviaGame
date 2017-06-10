@@ -1,25 +1,8 @@
 /*  Color Palletes 
 
 http://paletton.com/#uid=23j0u0kllnu5NNhdlvwsOg6Hd80
-*** Primary color:
 
-   shade 0 = #266E71 = rgb( 38,110,113) = rgba( 38,110,113,1) = rgb0(0.149,0.431,0.443)
-   shade 1 = #AED2D4 = rgb(174,210,212) = rgba(174,210,212,1) = rgb0(0.682,0.824,0.831)
-   shade 2 = #599598 = rgb( 89,149,152) = rgba( 89,149,152,1) = rgb0(0.349,0.584,0.596)
-   shade 3 = #084A4E = rgb(  8, 74, 78) = rgba(  8, 74, 78,1) = rgb0(0.031,0.29,0.306)
-   shade 4 = #002527 = rgb(  0, 37, 39) = rgba(  0, 37, 39,1) = rgb0(0,0.145,0.153)
-
-*** Complement color:
-
-   shade 0 = #BB783E = rgb(187,120, 62) = rgba(187,120, 62,1) = rgb0(0.733,0.471,0.243)
-   shade 1 = #FFE6D1 = rgb(255,230,209) = rgba(255,230,209,1) = rgb0(1,0.902,0.82)
-   shade 2 = #FBC392 = rgb(251,195,146) = rgba(251,195,146,1) = rgb0(0.984,0.765,0.573)
-   shade 3 = #80420D = rgb(128, 66, 13) = rgba(128, 66, 13,1) = rgb0(0.502,0.259,0.051)
-   shade 4 = #401D00 = rgb( 64, 29,  0) = rgba( 64, 29,  0,1) = rgb0(0.251,0.114,0)
-
-font-family: 'Special Elite', cursive;
 */
-
 
 
 * {
@@ -27,40 +10,55 @@ font-family: 'Special Elite', cursive;
 }
 
 body {
-	background-color: #266E71; 
-	font-size: 16px;
-	color: #AED2D4;
-	font-family: 'Nunito Sans', sans-serif;
+	background-color: #c01618; 
+	font-size: 20px;
+	color: #ffffff;
+	font-family: 'Nunito Sans', sans-serif; 
+	line-height: 24px;
 } 
 
 h1 {
 	font-family: 'Comfortaa', cursive;
 	font-size: 66px;
-	color: #FFE6D1;
+	color: #f9d500;
+	margin-bottom: 15px;
+	text-align: center;
 }
 
 h2 {  
 	font-family: 'Comfortaa', cursive;
-	font-size: 24px;
 } 
 
 button {
+	margin: 25px auto;
 	padding: 25px 50px;
-	background-color: #599598;
+	background-color: #f9d500;
 	font-size: 24px;
+	color: #c01618;
 }
 
-.container {
-	width: 1000px;
-	margin: 50px auto;
+input[type='radio'] {
+	margin-right: 5px;
+	line-height: 25px;
 }
+
 
 .gamecontainer {
-
+	margin: 15px 0;
 } 
+
+.scoretally {
+	margin: 20px 0;
+}
 
 .answers {
 	padding: 10px 25px;
+}
+
+.gameover h2 {
+	color: #FFE861;
+	font-size: 45px;
+
 }
 
 .margintpbtm {

@@ -5,21 +5,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Trivia Game</title> 
+	
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Comfortaa|Nunito+Sans|Special+Elite" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 </head>
 
 
 <body>
+	
 	<div class="container">
 		<header>
-			<h1>Big Bang Theory Trivia Game</h1>
-		</header>
-		<div id="game" class="gamecontainer">
+			<div class='banner col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+				<img class="img-responsive " src="images/bigbangtheorybanner-2.jpg">
+				<h1>Big Bang Theory Trivia Game</h1>
+			</div>
 			
+		</header>
+		
+	</div>		
+
+	<div class="container">
+		<div id="game" class="col-lg-offset-1 col-lg-6 col-md-10 col-sm-12">
 			<button id="start-button">Start</button>
 
 			<div id="timecontainer" class="margintpbtm"> </div>
@@ -29,9 +39,9 @@
 				<ul id="answers" class="margintpbtm"></ul>
 				<div id="submitbtn"></div>	
 			</div>
-			
+
 		</div> 
-		<div id='scoretally'></div>
+		<div id='scoretally' class='col-lg-offset-1 col-lg-6 col-md-10 col-sm-12'></div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="javascript/app.js"></script>
